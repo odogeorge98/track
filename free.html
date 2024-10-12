@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Section</title>
+    <style>
+        /* Styles for the counter section */
+        .single-counter-item {
+            margin-bottom: 30px;
+        }
+
+/* General Styling */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.single-counter-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.elementor-counter {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 50%; /* Make it circular */
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.elementor-counter-number-wrapper {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.elementor-counter-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #343a40;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Large screens: 4 items in a row */
+@media (min-width: 992px) {
+    .col-lg-3 {
+        width: calc(25% - 30px); /* 4 items per row, adjust for margin */
+    }
+
+    .single-counter-item {
+        margin: 15px;
+    }
+}
+
+/* Mobile view (2 items per row) */
+@media (max-width: 767px) {
+    .col-sm-6 {
+        width: calc(50% - 30px); /* 2 items per row */
+    }
+
+    .single-counter-item {
+        margin: 15px;
+    }
+
+    .elementor-counter {
+        width: 120px;
+        height: 120px;
+    }
+
+    .elementor-counter-number-wrapper {
+        font-size: 1.5rem;
+    }
+
+    .elementor-counter-title {
+        font-size: 0.8rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+<section class="counter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="32125">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Delivered Packages</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="23786">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">KM Per Year</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="12986">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Tons Of Goods</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="78980">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Satisfied Clients</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<script>
+    // Function to animate the counter
+    function animateCounter(counter) {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 100; // Adjust the divisor to change the speed
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 20); // 20ms delay
+        } else {
+            counter.innerText = target;
+        }
+    }
+
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+               rect.bottom >= 0;
+    }
+
+    // Function to start the counter animations
+    function checkCounters() {
+        const counters = document.querySelectorAll('.count');
+        counters.forEach(counter => {
+            const parent = counter.closest('.single-counter-item');
+            if (isInViewport(parent)) {
+                if (!counter.classList.contains('started')) { // Prevent multiple triggers
+                    counter.classList.add('started');
+                    animateCounter(counter);
+                }
+            }
+        });
+    }
+
+    // Event listeners for scrolling and loading
+    window.addEventListener('scroll', checkCounters);
+    window.addEventListener('load', checkCounters);
+</script>
+
+</body>
+</html>

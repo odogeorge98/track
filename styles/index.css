@@ -1,0 +1,383 @@
+/* Green landing section styling */
+#landing-section {
+    background-color: #f55f5f;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    width: 100vw; /* Use viewport width to ensure full page width */
+    margin: -33px; /* Remove any potential default margins */
+    position: relative;
+}
+
+@media (max-width: 767.98px) {
+    #landing-section {
+        margin: -15px; /* Remove any potential default margins */
+    }
+}
+
+#landing-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#landing-section .form-control {
+    border-radius: 20px;
+}
+
+/* Sticky header style */
+.navbar {
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Header styles before scroll */
+.navbar-light.bg-green {
+    background-color: #f55f5f;
+}
+
+/* Header styles after scroll */
+.navbar-light.scrolled {
+    background-color: white !important;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Icons styling */
+.icon {
+    font-size: 2rem;
+    margin: 20px 10px;
+    color: white;
+}
+
+/* Icon color change when scrolled */
+.scrolled .icon {
+    color: #f55f5f;
+}
+
+.counter-section {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align to the left */
+}
+
+.counter-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #f55f5f; /* Red color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.counter-section p {
+    margin-top: 15px; /* Add space between circle and text */
+    text-align: center; /* Center the text under the circle */
+    font-size: 1.2rem; /* Optional: increase the text size */
+}
+
+.full-width-image {
+    overflow: hidden; /* Ensure the image does not overflow the div */
+}
+
+.full-width-image img {
+    width: 95%; /* Make the image take up the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the div, avoiding distortion */
+}
+
+/* CSS for the modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background for more contrast */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centered */
+    padding: 30px; /* Increased padding */
+    border-radius: 12px; /* Slightly larger border radius */
+    width: 80%; /* Adjusted width */
+    max-width: 600px; /* Max width for larger screens */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea; /* Subtle border at the bottom */
+    padding-bottom: 15px; /* Space between header and body */
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #f55f5f; /* Change color on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 10px; /* Slightly larger border radius */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+    padding: 20px; /* Increased padding */
+    margin-bottom: 15px;
+}
+
+.info-card h5 {
+    margin-bottom: 10px;
+    color: #007bff; /* Blue color for headings */
+    font-size: 1.25rem; /* Slightly larger font size */
+}
+
+.info-card p {
+    margin: 0;
+    color: #555; /* Darker gray for better readability */
+    font-size: 16px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px; /* Increased gap between buttons */
+}
+
+/* Button styling */
+.modal-footer .btn {
+    padding: 10px 20px; /* More padding for buttons */
+    border-radius: 5px; /* Slightly rounded corners */
+    font-size: 16px; /* Larger font size */
+}
+
+.modal-footer .btn-secondary {
+    background-color: #f55f5f; /* Consistent with theme */
+    color: white;
+}
+
+.modal-footer .btn-primary {
+    background-color: #007bff; /* Blue color for primary button */
+    color: white;
+}
+
+/* Styling for counter value */
+#counter-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #receiptInfo div {
+        padding: 10px; /* Reduce padding for smaller screens */
+        font-size: 14px; /* Adjust font sizes for better readability */
+    }
+    
+    #receiptInfo h2 {
+        font-size: 1.25rem; /* Slightly smaller title for mobile */
+    }
+    
+    #receiptInfo img {
+        width: 80%; /* Make the image responsive */
+        max-width: 120px; /* Limit image size on mobile */
+    }
+    
+    #receiptInfo h5 {
+        font-size: 14px; /* Smaller heading font size */
+    }
+    
+    #receiptInfo p {
+        font-size: 12px; /* Smaller paragraph font size */
+    }
+}
+
+
+
+#trackButton {
+    background-color: #f8f9fa; /* Light button background (Bootstrap's btn-light default) */
+    color: #000; /* Text color */
+    border: 1px solid #ced4da; /* Border color to match Bootstrap's input group */
+    border-radius: 0 4px 4px 0; /* Rounds right corners for input group */
+    padding: 10px 20px; /* Padding for button size */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+#trackButton:hover {
+    background-color: #e2e6ea; /* Slightly darker shade on hover */
+    color: #000; /* Keep text color */
+    border-color: #dae0e5; /* Lighter border on hover */
+}
+
+#trackButton:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle shadow for focus */
+}
+
+
+
+
+
+
+
+
+
+
+.elementor-counter {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 50%; /* Make it circular */
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.elementor-counter-number-wrapper {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.elementor-counter-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #343a40;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Mobile view (2 items per row) */
+@media (max-width: 767px) {
+    .col-sm-6 {
+        width: calc(50% - 30px); /* 2 items per row */
+    }
+
+    .single-counter-item {
+        margin: 10px;
+    }
+
+    .elementor-counter {
+        width: 120px;
+        height: 120px;
+    }
+
+    .elementor-counter-number-wrapper {
+        font-size: 1.2rem;
+    }
+
+    .elementor-counter-title {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+
+
+
+
+/* Responsive styles for cards */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px; /* Reduce margin on smaller screens */
+    }
+}
+
+
+/* Hide scrollbar for mobile */
+.carousel-inner {
+    overflow: hidden; /* Prevents overflow */
+}
+
+/* Adjust carousel height to fit content */
+.carousel-item img {
+    max-height: 300px; /* Maximum height for images */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+/* Optional: Adjust card margins for mobile carousel */
+.carousel-item .card {
+    margin: 0 10px; /* Margin for spacing between cards */
+}
+
+/* Hide carousel for larger screens */
+@media (min-width: 768px) {
+    .carousel-container {
+        display: none; /* Hides the carousel on larger screens */
+    }
+}
+
+/* Hide desktop container for mobile */
+@media (max-width: 767.98px) {
+    .desktop-container {
+        display: none; /* Hides the desktop view on smaller screens */
+    }
+}
+
+.card-img-top {
+    height: 200px; /* Optional: Adjust the height for consistent image sizes */
+    object-fit: cover;
+  }
+  
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.navbar-brand {
+    font-size: 2rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    color: #c3ddca; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition */
+    font-family: 'Roboto', sans-serif; /* Font family */
+}
+
+.navbar-brand:hover {
+    color: #333; /* Darker color on hover */
+}
+
+/* Additional styling */
+.navbar-brand::after {
+    content: ''; /* Creates an underline effect */
+    display: block;
+    height: 3px; /* Thickness of the underline */
+    width: 100%; /* Full width */
+    background-color: #333; /* Color of the underline */
+    transform: scaleX(0); /* Starts with no width */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.navbar-brand:hover::after {
+    transform: scaleX(1); /* Full width on hover */
+}

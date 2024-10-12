@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Tracking Site</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+  
+    </style>
+</head>
+<body>
+<header>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-green fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">TrackMaster</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pages/about_us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Landing Section with Tracking Input and Icons -->
+<main class="container-fluid">
+    <div id="landing-section">
+        <h2>Track Your Product</h2>
+        <form class="w-50 mx-auto">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="trackingId" placeholder="Enter Tracking ID">
+                <div class="input-group-append">
+                    <button class="btn btn-light" type="button" id="trackButton">Track</button>
+                </div>
+                
+            </div>
+        </form>
+        <!-- Icons below the input field -->
+        <div class="d-flex justify-content-center">
+            <i class="fas fa-shipping-fast icon"></i>
+            <i class="fas fa-box-open icon"></i>
+            <i class="fas fa-map-marker-alt icon"></i>
+        </div>
+    </div>
+
+      <!-- Modal for Receipt -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Parcel Information</h4>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="map" style="height: 400px; margin-top: 20px;"></div>
+
+                <div id="receiptInfo" class="info-card">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="printReceipt()" class="btn btn-secondary">Print Receipt</button>
+                <button class="btn btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Services Section for Desktop View -->
+<div class="container mt-5 desktop-container">
+    <div class="row">
+        <!-- Desktop View -->
+        <div class="col-md-4">
+            <div class="card box">
+                <img src="./resources/gallery_img03.jpg" class="card-img-top" alt="Track Your Package">
+                <div class="card-body">
+                    <h5 class="card-title">Track Your Package</h5>
+                    <p class="card-text">Easily track your shipments and receive real-time updates on your package's status.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card box">
+                <img src="./resources/gallery_img05.jpg" class="card-img-top" alt="Delivery Alerts">
+                <div class="card-body">
+                    <h5 class="card-title">Delivery Alerts</h5>
+                    <p class="card-text">Stay informed with instant alerts for your deliveries right to your mobile device.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card box">
+                <img src="./resources/gallery_img09.jpg" class="card-img-top" alt="Customer Support">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Support</h5>
+                    <p class="card-text">Get assistance from our dedicated support team to resolve any tracking issues.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section for Mobile View (Carousel) -->
+<div id="servicesCarousel" class="carousel slide mt-5 carousel-container" data-ride="carousel">
+    <div class="carousel-inner">
+        <!-- First Slide -->
+        <div class="carousel-item active">
+            <div class="card">
+                <img src="./resources/gallery_img03.jpg" class="card-img-top" alt="Track Your Package">
+                <div class="card-body">
+                    <h5 class="card-title">Track Your Package</h5>
+                    <p class="card-text">Easily track your shipments and receive real-time updates on your package's status.</p>
+                    <a href="#" class="btn btn-primary" style="display: block; margin: 0 auto;">Learn More</a> <!-- Centering the button -->
+                </div>
+            </div>
+        </div>
+        <!-- Second Slide -->
+        <div class="carousel-item">
+            <div class="card">
+                <img src="./resources/gallery_img05.jpg" class="card-img-top" alt="Delivery Alerts">
+                <div class="card-body">
+                    <h5 class="card-title">Delivery Alerts</h5>
+                    <p class="card-text">Stay informed with instant alerts for your deliveries right to your mobile device.</p>
+                    <a href="#" class="btn btn-primary" style="display: block; margin: 0 auto;">Learn More</a> <!-- Centering the button -->
+                </div>
+            </div>
+        </div>
+        <!-- Third Slide -->
+        <div class="carousel-item">
+            <div class="card">
+                <img src="./resources/gallery_img09.jpg" class="card-img-top" alt="Customer Support">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Support</h5>
+                    <p class="card-text">Get assistance from our dedicated support team to resolve any tracking issues.</p>
+                    <a href="#" class="btn btn-primary" style="display: block; margin: 0 auto;">Learn More</a> <!-- Centering the button -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls for Mobile Carousel -->
+    <a class="carousel-control-prev" href="#servicesCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#servicesCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+    <!-- Write-up and Image Section -->
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>About Product Tracking</h3>
+                <p>
+                    Product tracking allows you to keep an eye on your products as they move through the shipping process. Whether you're shipping across the city or across the world, our real-time tracking tool gives you complete transparency.
+                    From the moment your order is placed to its delivery at your doorstep, we ensure you stay updated with every milestone along the way.
+                    Get notified about the location, estimated arrival time, and any possible delays, making it easier for you to plan and stay informed.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <img src="./resources/plane.svg" alt="Tracking Process" class="img-fluid">
+            </div>
+        </div>
+    </section>
+
+
+<h3 style="text-align: center;">Global parcel tracking</h3>
+<h1 style="text-align: center;"> over 200 supported countries</h1>
+    <div class="full-width-image">
+        <img src="./resources/full.png" alt="Full Width Image">
+    </div>
+    
+
+
+
+
+    
+
+
+
+
+    
+    <div class="container mt-5">
+        <div class="row">
+        
+    
+            <!-- Section 2 with image -->
+            <div class="col-md-4 text-center" style="margin-top: -2em;">
+                <img src="./resources/supported-carriers.svg" alt="Truck" class="img-fluid mb-3">
+                <h3>Fast Shipping</h3>
+                <p>We partner with the world’s top shipping companies to ensure fast, reliable delivery for your products. Track your shipment from warehouse to your doorstep with ease.</p>
+            </div>
+    
+            <!-- Section 3 with image -->
+            <div class="col-md-4 text-center">
+                <img src="./resources/autodetect-carriers.svg" alt="Location" class="img-fluid mb-3">
+                <h3>Real-time Location Updates</h3>
+                <p>Stay updated with real-time notifications about your product’s location. Our system provides instant updates as your shipment progresses through different stages.</p>
+            </div>
+        </div>
+    </div>
+    
+    
+
+</main>
+
+
+
+<section class="counter-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="32125">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Delivered Packages</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="23786">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">KM Per Year</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="12986">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Tons Of Goods</div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6 single-counter-item">
+                <div class="elementor-counter text-center geoport-counter">
+                    <div class="elementor-counter-number-wrapper">
+                        <span class="elementor-counter-number-prefix"></span>
+                        <span class="count" data-target="78980">0</span>
+                        <span class="elementor-counter-number-suffix">+</span>
+                    </div>
+                    <div class="elementor-counter-title">Satisfied Clients</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section><br><br>
+
+
+
+<!-- Footer -->
+<footer class=" text-light pt-4" style="background-color: #f55f5f;">
+    <div class="container">
+        <div class="row">
+            <!-- About Section -->
+            <div class="col-md-4 mb-3">
+                <h5>About Us</h5>
+                <p>We are committed to providing exceptional service and quality products. Our mission is to ensure customer satisfaction through our dedicated service.</p>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="col-md-4 mb-3">
+                <h5>Contact Information</h5>
+                <p>Email: <a href="mailto:info@trackmaster.com" class="text-light">info@trackmaster.com</a></p>
+                <p>Phone: <a href="tel:+1234567890" class="text-light">+1 (234) 567-890</a></p>
+                <p>Customer Service: 1-800-TRACK-MASTER</p>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="col-md-4 mb-3">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center mt-4">
+                <p>&copy; 2024 TrackMaster. All rights reserved.</p>
+                <a href="#" class="text-light">Privacy Policy</a> | 
+                <a href="#" class="text-light">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="./scripts/index.js"></script>
+
+</body>
+</html>
